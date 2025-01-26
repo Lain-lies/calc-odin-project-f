@@ -1,10 +1,12 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
-    border: 1px solid green;
+    /* border: 1px solid firebrick; */
 }
 
 * {
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
 }
 
@@ -18,7 +20,7 @@ img, picture, video, canvas, svg {
     max-width: 100%;
 }
 
-    input, button, textarea, select {
+input, button, textarea, select {
     font: inherit;
 }
 
@@ -27,11 +29,108 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
-p {
-    text-wrap: pretty;
-}
-    h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
 }
 
+/* resets above */
 
+body{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+h1{
+      
+    margin: 15px 0;
+}
+
+
+.screen{
+    border: 1px solid firebrick;
+    border: inherit;
+    border-radius: inherit;
+    
+    
+}
+.screen-container,
+.control-container{
+
+    margin-top: 4px;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    width: 80%;
+    min-height: 12rem;
+    background-color: #343f56;
+
+}
+
+.screen-container{
+
+    padding: 0.5rem;
+}
+
+.screen{
+    
+    background-color: #f5e6ca;
+
+    min-height: inherit;
+    padding: 0.5rem;
+    text-align: right;
+    font-size: 6rem;
+}
+
+.control-container{
+    
+    display:flex;
+    min-height: 30rem;
+
+}
+
+.control-container > div{
+    
+    padding: 5px;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.left-buttons-container{
+    
+    width: 70%;
+}
+
+
+.left-buttons-container button{
+    
+    width: 33%;
+}
+
+.left-buttons-container button:last-child{
+
+    width: 99.5%;
+}
+
+.right-buttons-container{
+    
+    width: 30%;
+}
+
+.right-buttons-container button{
+    
+    width:100%;
+
+}
+
+button{
+
+    background-color: #f5e6ca;
+    border-radius: 1rem;
+    font-size: 2.5rem;
+    color:black;
+    
+}
