@@ -50,11 +50,11 @@ h1{
 
 
 .screen{
+
     border: 1px solid firebrick;
     border: inherit;
     border-radius: inherit;
-    
-    
+     
 }
 .screen-container,
 .control-container{
@@ -76,7 +76,6 @@ h1{
 .screen{
     
     background-color: #f5e6ca;
-
     min-height: inherit;
     padding: 0.5rem;
     text-align: right;
@@ -103,7 +102,6 @@ h1{
     
     width: 70%;
 }
-
 
 .left-buttons-container button{
     
