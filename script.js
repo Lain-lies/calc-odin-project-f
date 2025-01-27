@@ -20,19 +20,29 @@ function divide(a, b){
     return a / b;
 }
 
-const fetchDigitButtons = document.querySelectorAll(".left-buttons-container button");
-const digitButtons = Array.from(fetchDigitButtons);
+function evaluate(inputStack, operationStack){
+    
+    for(let i = 0; i < inputStack.length - 1; i++){
+        
+        inputStack[i + 1] = operationStack[i](inputStack[i], inputStack[i+1]);
+
+    }
+
+    return inputStack[inputStack.length - 1];
+
+}
 
 let inputStack = [];
 let operationStack = [];
-
 let inputValue = "";
+
+const fetchDigitButtons = document.querySelectorAll(".left-buttons-container button");
+const digitButtons = Array.from(fetchDigitButtons);
 
 digitButtons.map(button => {
     
     button.addEventListener("click", () => {
 
-        alert(button.textContent);        
         inputValue += button.textContent;
         
         console.log(inputValue);
@@ -56,14 +66,37 @@ for(let i = 0; i < operationFunctionArray.length; i++){
         inputStack.push(inputValue);
 
         inputValue = "";
+
         console.log(`input stack : ${inputStack}`);
         console.log(`operation stack : ${operationStack}`);
         
     });
 }
 
-console.log(operationButtons);
-console.log(equalButton);
+equalButton.addEventListener("click", () => {
 
+    if(inputStack.length === 0){
+        
+        console.log("Syntax Error: No Inputs")
+        return;
+    }
 
+    if(inputValue === "") {
 
+        console.log("Syntax Error: Last input is an operator, failed to evaluate");
+        return;
+
+    }
+
+    inputStack.push(inputValue);
+    inputValue = "";
+
+    inputStack = inputStack.map(input => {
+
+        return +input;
+
+    });
+
+    console.log(`Result : ${evaluate(inputStack, operationStack)}`);
+    
+});
