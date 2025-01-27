@@ -1,7 +1,5 @@
 function reset(){
     
-    inputStack = [];
-    operationStack = [];
     screen.textContent = "0";
     buttonClickedOnce = false;
     inputValue = "";
@@ -30,21 +28,13 @@ function divide(a, b){
     return a / b;
 }
 
-function evaluate(inputStack, operationStack){
+function evaluate(){
     
-    for(let i = 0; i < inputStack.length - 1; i++){
-        
-        inputStack[i + 1] = operationStack[i](inputStack[i], inputStack[i+1]);
-
-    }
-
-    return inputStack[inputStack.length - 1];
-
+    return calculationStack[1](+calculationStack[0], +calculationStack[2]);
 }
 
 let buttonClickedOnce= false;
-let inputStack = [];
-let operationStack = [];
+let calculationStack = [];
 let inputValue = "";
 
 const fetchDigitButtons = document.querySelectorAll(".left-buttons-container button");
@@ -65,8 +55,6 @@ digitButtons.map(button => {
 
         inputValue += button.textContent;
         screen.textContent += button.textContent;
-
-        console.log(inputValue);
     });
 });
 
@@ -86,58 +74,74 @@ for(let i = 0; i < operationFunctionArray.length; i++){
     operationButtons[i].addEventListener("click", () => {
         
         if(inputValue === "") return;
-        
         let operation = operationFunctionArray[i];
-        operationStack.push(operation);
-        inputStack.push(inputValue);
 
+        // START
+        if(calculationStack.length === 0){
+            
+            calculationStack.push(inputValue);
+            calculationStack.push(operation);
+            
+        }else if(calculationStack.length === 2){
+            
+            calculationStack.push(inputValue);
+
+        }
+        
+        if(calculationStack.length === 3){
+
+            let result = evaluate();
+            calculationStack = [];
+            calculationStack.push(result)
+            calculationStack.push(operation);
+            
+        }
+
+        console.log(calculationStack);
         let operationSymbol = operationFunctionSymbol[i];
         screen.textContent += operationSymbol;
         
         inputValue = "";
 
-        console.log(`input stack : ${inputStack}`);
-        console.log(`operation stack : ${operationStack}`);
-        
     });
 }
 
-equalButton.addEventListener("click", () => {
+// equalButton.addEventListener("click", () => {
 
-    if(inputStack.length === 0){
+//     if(inputStack.length === 0){
         
-        console.log("Syntax Error: No Inputs")
-        return;
-    }
+//         console.log("Syntax Error: No Inputs")
+//         return;
+//     }
 
-    if(inputValue === "") {
+//     if(inputValue === "") {
 
-        console.log("Syntax Error: Last input is an operator, failed to evaluate");
-        return;
+//         console.log("Syntax Error: Last input is an operator, failed to evaluate");
+//         return;
 
-    }
+//     }
 
-    inputStack.push(inputValue);
-    inputValue = "";
+//     inputStack.push(inputValue);
+//     inputValue = "";
 
-    inputStack = inputStack.map(input => {
+//     inputStack = inputStack.map(input => {
 
-        return +input;
+//         return +input;
 
-    });
+//     });
 
-    screen.textContent = "";
+//     screen.textContent = "";
     
-    let result = evaluate(inputStack, operationStack);
+//     let result = evaluate(inputStack, operationStack);
     
-    if(result === Infinity){
+//     if(result === Infinity){
         
-        alert("Division Error");
-        reset();
-        return;
-    }
+//         alert("Division Error");
+//         reset();
+//         return;
+//     }
 
-    screen.textContent = `= ${result}`
+//     screen.textContent = `= ${result}`
     
-});
+// });
 
