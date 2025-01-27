@@ -1,3 +1,12 @@
+function reset(){
+    
+    inputStack = [];
+    operationStack = [];
+    screen.textContent = "0";
+    inputValue = "";
+
+}
+
 function add(a, b){
     
     return a + b;
@@ -32,8 +41,7 @@ function evaluate(inputStack, operationStack){
 
 }
 
-// LOGIC 
-
+let buttonClickedOnce= false;
 let inputStack = [];
 let operationStack = [];
 let inputValue = "";
@@ -47,6 +55,12 @@ digitButtons.map(button => {
     
     button.addEventListener("click", () => {
         
+        if(!buttonClickedOnce){
+            
+            screen.textContent = "";
+            buttonClickedOnce = true;
+        }
+
         inputValue += button.textContent;
         screen.textContent += button.textContent;
 
@@ -109,7 +123,17 @@ equalButton.addEventListener("click", () => {
     });
 
     screen.textContent = "";
-    screen.textContent = `= ${evaluate(inputStack, operationStack)}`
+    
+    let result = evaluate(inputStack, operationStack);
+    
+    if(result === Infinity){
+        
+        alert("Division Error");
+        reset();
+        return;
+    }
+
+    screen.textContent = `= ${result}`
     
 });
 
