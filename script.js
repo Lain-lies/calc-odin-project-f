@@ -32,6 +32,8 @@ function evaluate(inputStack, operationStack){
 
 }
 
+// LOGIC 
+
 let inputStack = [];
 let operationStack = [];
 let inputValue = "";
@@ -39,32 +41,41 @@ let inputValue = "";
 const fetchDigitButtons = document.querySelectorAll(".left-buttons-container button");
 const digitButtons = Array.from(fetchDigitButtons);
 
+const screen = document.querySelector(".screen");
+
 digitButtons.map(button => {
     
     button.addEventListener("click", () => {
-
-        inputValue += button.textContent;
         
+        inputValue += button.textContent;
+        screen.textContent += button.textContent;
+
         console.log(inputValue);
     });
 });
 
 const operationFunctionArray = [add, subtract, multiply, divide];
+const operationFunctionSymbol = [' + ', ' - ', ' x ', ' / '];
+
 const fetchOperationButtons = document.querySelectorAll(".right-buttons-container button");
 
 const operationButtons = Array.from(fetchOperationButtons);
 const equalButton = operationButtons.pop();
+
 
 for(let i = 0; i < operationFunctionArray.length; i++){
     
     operationButtons[i].addEventListener("click", () => {
         
         if(inputValue === "") return;
-
+        
         let operation = operationFunctionArray[i];
         operationStack.push(operation);
         inputStack.push(inputValue);
 
+        let operationSymbol = operationFunctionSymbol[i];
+        screen.textContent += operationSymbol;
+        
         inputValue = "";
 
         console.log(`input stack : ${inputStack}`);
@@ -97,6 +108,8 @@ equalButton.addEventListener("click", () => {
 
     });
 
-    console.log(`Result : ${evaluate(inputStack, operationStack)}`);
+    screen.textContent = "";
+    screen.textContent = `= ${evaluate(inputStack, operationStack)}`
     
 });
+
