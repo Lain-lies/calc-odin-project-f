@@ -3,6 +3,7 @@ function reset(){
     inputStack = [];
     operationStack = [];
     screen.textContent = "0";
+    buttonClickedOnce = false;
     inputValue = "";
 
 }
@@ -48,6 +49,7 @@ let inputValue = "";
 
 const fetchDigitButtons = document.querySelectorAll(".left-buttons-container button");
 const digitButtons = Array.from(fetchDigitButtons);
+const clearButton = digitButtons.pop();
 
 const screen = document.querySelector(".screen");
 
@@ -67,6 +69,8 @@ digitButtons.map(button => {
         console.log(inputValue);
     });
 });
+
+clearButton.addEventListener("click", reset);
 
 const operationFunctionArray = [add, subtract, multiply, divide];
 const operationFunctionSymbol = [' + ', ' - ', ' x ', ' / '];

@@ -49,13 +49,6 @@ h1{
 }
 
 
-.screen{
-
-    border: 1px solid firebrick;
-    border: inherit;
-    border-radius: inherit;
-     
-}
 .screen-container,
 .control-container{
 
@@ -75,11 +68,15 @@ h1{
 
 .screen{
     
+    border: 1px solid firebrick;
+    border: inherit;
+    border-radius: inherit;
     background-color: #f5e6ca;
     min-height: inherit;
     padding: 0.5rem;
     text-align: right;
     font-size: 6rem;
+
 }
 
 .control-container{
@@ -108,9 +105,13 @@ h1{
     width: 33%;
 }
 
+.left-buttons-container button:nth-last-child(2){
+
+    width: 80%;
+}
 .left-buttons-container button:last-child{
 
-    width: 99.5%;
+    width: 19.5%;
 }
 
 .right-buttons-container{
@@ -130,5 +131,11 @@ button{
     border-radius: 1rem;
     font-size: 2.5rem;
     color:black;
+    
+}
+
+button:hover{
+    
+    cursor: pointer;
     
 }
