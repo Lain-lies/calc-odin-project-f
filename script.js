@@ -54,7 +54,9 @@ const equalButton = operationButtons.pop();
 for(let i = 0; i < operationFunctionArray.length; i++){
     
     operationButtons[i].addEventListener("click", () => {
-        
+
+        let operationSymbol = operationFunctionSymbol[i];
+
         if(inputValue === "") return;
 
         const operation = operationFunctionArray[i];
@@ -73,13 +75,13 @@ for(let i = 0; i < operationFunctionArray.length; i++){
         if(calculationStack.length === 3){
 
             let result = evaluate();
+            screen.textContent = result;
             calculationStack.push(result)
             calculationStack.push(operation);
 
         }
 
         console.log(calculationStack);
-        let operationSymbol = operationFunctionSymbol[i];
         screen.textContent += operationSymbol;
         inputValue = "";
 
@@ -95,6 +97,7 @@ equalButton.addEventListener("click", () => {
 
         calculationStack.push(inputValue);
         let result = evaluate();
+        screen.textContent = result;
         inputValue = `${result}`;
         console.log(calculationStack);
     }
