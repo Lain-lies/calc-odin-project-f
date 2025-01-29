@@ -105,17 +105,24 @@ h1{
     width: 33%;
 }
 
-.left-buttons-container button:nth-last-child(3){
+.left-buttons-container button:nth-last-child(4){
     width: 60%;
 }
-.left-buttons-container button:nth-last-child(2){
 
-    width: 80%;
-    width: 19.5%;
+.left-buttons-container button:nth-last-child(3){
+    width: 10%;
+
 }
+
+.left-buttons-container button:nth-last-child(2){
+    
+  
+    width: 10%;
+}
+
 .left-buttons-container button:last-child{
 
-    width: 19.5%;
+    width: 18%;
 }
 
 .right-buttons-container{
