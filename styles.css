@@ -101,13 +101,17 @@ h1{
 }
 
 .left-buttons-container button{
-    
+
     width: 33%;
 }
 
+.left-buttons-container button:nth-last-child(3){
+    width: 60%;
+}
 .left-buttons-container button:nth-last-child(2){
 
     width: 80%;
+    width: 19.5%;
 }
 .left-buttons-container button:last-child{
 
